@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الشركة العامة للكهرباء بنغازي - نظام قراءات العدادات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo i {
+            font-size: 40px;
+            color: #0066cc;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #004d99;
+        }
+        
+        input, button {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+        }
+        
+        .file-upload {
+            background: #f8f9fa;
+            border: 2px dashed #ced4da;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: #0066cc;
+            background: #e6f2ff;
+        }
+        
+        .file-upload i {
+            font-size: 24px;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #0066cc 0%, #004d99 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .btn i {
+            margin-left: 8px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #004d99 0%, #003366 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .instructions {
+            background: #e6f2ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-right: 4px solid #0066cc;
+        }
+        
+        .instructions h3 {
+            color: #004d99;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            padding-right: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: auto;
+        }
+        
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div>
+                    <h1>الشركة العامة للكهرباء بنغازي</h1>
+                    <p class="subtitle">نظام تسجيل قراءات العدادات الكهربائية</p>
+                </div>
+            </div>
+        </header>
+        
+        <div class="form-container">
+            <div class="instructions">
+                <h3>تعليمات التعبئة:</h3>
+                <ol>
+                    <li>أدخل رقم العداد الموجود على جهازك</li>
+                    <li>سجل قراءة العداد الحالية بالأرقام</li>
+                    <li>يمكنك إضافة صورة للعداد (اختياري)</li>
+                    <li>سيتم إرسال البيانات عبر واتساب بعد الضغط على زر "إرسال"</li>
+                </ol>
+            </div>
+            
+            <form id="meterForm">
+                <div class="form-group">
+                    <label for="meterNumber">رقم العداد</label>
+                    <input type="text" id="meterNumber" placeholder="أدخل رقم العداد كما هو مكتوب على الجهاز" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="meterReading">قراءة العداد (كيلوواط/ساعة)</label>
+                    <input type="number" id="meterReading" placeholder="أدخل قيمة القراءة الحالية" min="0" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>رفع صورة العداد (اختياري)</label>
+                    <div class="file-upload" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>انقر أو اسحب الصورة هنا لرفعها</p>
+                        <input type="file" id="meterImage" accept="image/*" hidden>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fab fa-whatsapp"></i> إرسال عبر واتساب
+                </button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                <p>تم إعداد الرسالة جاهزة للإرسال عبر واتساب. سيتم فتح تطبيق واتساب الآن.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 الشركة العامة للكهرباء بنغازي. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('meterImage');
+            const form = document.getElementById('meterForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // رفع الصورة عند النقر على المنطقة
+            uploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            // تغيير مظهر منطقة الرفع عند وجود ملف
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    uploadArea.innerHTML = `
+                        <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                        <p>تم اختيار صورة: ${fileInput.files[0].name}</p>
+                        <p style="font-size: 12px; margin-top: 5px;">انقر لتغيير الصورة</p>
+                    `;
+                }
+            });
+            
+            // إرسال النموذج
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const meterNumber = document.getElementById('meterNumber').value;
+                const meterReading = document.getElementById('meterReading').value;
+                
+                // إنشاء رسالة واتساب
+                const whatsappMessage = `قراءة عداد كهرباء%0Aرقم العداد: ${meterNumber}%0Aالقراءة: ${meterReading} ك.و.س`;
+                
+                // فتح واتساب مع الرسالة
+                window.open(`https://wa.me/?text=${whatsappMessage}`, '_blank');
+                
+                // إظهار رسالة نجاح
+                successMessage.style.display = 'block';
+                
+                // إعادة تعيين النموذج بعد 3 ثوان
+                setTimeout(function() {
+                    form.reset();
+                    successMessage.style.display = 'none';
+                    uploadArea.innerHTML = `
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>انقر أو اسحب الصورة هنا لرفعها</p>
+                    `;
+                }, 3000);
+            });
+            
+            // تأثير سحب وإسقاط للصورة
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#0066cc';
+                this.style.background = '#d9ebff';
+            });
+            
+            uploadArea.addEventListener('dragleave', function() {
+                this.style.borderColor = '#ced4da';
+                this.style.background = '#f8f9fa';
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#ced4da';
+                this.style.background = '#f8f9fa';
+                
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    
+                    uploadArea.innerHTML = `
+                        <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                        <p>تم اختيار صورة: ${e.dataTransfer.files[0].name}</p>
+                        <p style="font-size: 12px; margin-top: 5px;">انقر لتغيير الصورة</p>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
